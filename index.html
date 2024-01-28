@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+    <title>ABC思维模式训练</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0 auto;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+			width:400px;
+			
+        }
+
+        .container {
+            max-width: 400px;
+			width:100%;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+			height:100%;
+        }
+		.container2{
+			width:70%;
+			margin:auto;
+		}
+
+        h1 {
+            color: #333;
+            margin-bottom: 40px;
+			width:100%;
+			background:#D3D3D3;
+			margin-top:0;
+			padding:24px 0px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 26px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+			width:130px;
+			margin-bottom:20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .scenario-input {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .redirect-text {
+            color: #999;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .redirect-link {
+            color: #007bff;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .scenario-option {
+            display: block;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="welcome-page">
+        <h1>ABC思维模式训练</h1>
+		<img src="coverphoto.jpg" width="70%" alt="cover photo" style="margin-bottom:10px;">        
+		<p>识别和挑战您的信念，找出更好的信念，<br>从而改变你的生活。</p>
+        <button onclick="showIntroduction()">开始</button>
+    </div>
+
+    <div class="container" id="introduction-page" style="display: none;">
+        <h1>ABC思维模式简介</h1>
+		<div class="container2">
+			<p>ABC思维模式是一种认知行为工具，用于识别和挑战不健康的思维模式。</p>
+			<img src="illustrate.jpg" width="100%" alt="cover photo" style="margin-bottom:10px;">        
+
+			<p>在此过程中，您将学习如何：</p>
+			<p>把自己遇到的坏事变成对自己有收获的事情</p>
+			
+
+			<button onclick="startInput()">开始</button>
+		</div>
+    </div>
+
+    <div class="container" id="input-page" style="display: none;">
+        <h1>输入情境</h1>
+		<div class="container2">
+
+			<p>输入您想要转变的情境：</p>
+			<div id="scenario-inputs">
+				<input type="text" class="scenario-input" placeholder="情境1 (例子：被老板骂)">
+			</div>
+			<button onclick="addScenarioInput()">添加情境</button>
+			<button onclick="showBeliefInput()">下一步</button>
+		</div>
+    </div>
+
+
+    <div class="container" id="belief-input-page" style="display: none;">
+		<h1>改变你的信念</h1>
+		<div class="container2">
+		
+			<h3>选择情境</h3>
+			<p>请选择要挑战的情境：</p>
+			<div id="scenario-list">
+				<!-- Scenario options will be added dynamically here -->
+			</div>
+			<h3>挑战您的信念</h3>
+			<div id="selected-scenario"></div>
+			<input type="text" id="belief-input" placeholder="输入您的信念(我不知道应该怎么做)">
+			<input type="text" id="consequence-input" placeholder="输入结果（很焦虑，浪费时间）">
+			<input type="text" id="action-input" placeholder="如何转变信念（专注成长就好，别的不重要）" style="display: none;">
+			<input type="text" id="desire-consequence" placeholder="希望的结果（做自己的事情，自我提升）" style="display: none;">
+			<button onclick="evaluateBelief()">评估信念</button>
+			<button onclick="showScenarioInput()">返回添加情境</button>
+			<button onclick="showSubscribe();">我做完了</button>
+
+		</div>
+    </div>
+
+	<div class="container" id="subscribe-page" style="display: none;">
+		<h1>恭喜你已经完成了</h1>
+		<div class="container2">
+			<div class="row" style="margin-bottom: 30px;">
+				<div class="column">
+					<p>觉得我们有更多进步的地方？或者想要更多的系列？给我们一点意见吧·</p>
+					<form action="https://script.google.com/macros/s/AKfycbxHQefQKgU5bVNMaDdbp_oP8mge0U2UAcvx2Y9M0c8kOJxpuCfJUbimgESUCeKJrZ2blg/exec" method="POST">
+						<label for="feedback" style="margin-bottom:30px;">提供反馈：</label>
+						<textarea id="moreDetails" name="details" class="form-control" id="feedback" rows="5" style="width: 100%;"></textarea>
+						<button type="submit" style="margin-top: 10px; padding: 10px 20px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">提交反馈</button>
+					</form>
+				</div>
+
+				<div class="column">
+					<h3>想要保存这个APP？</h3>
+					<p>可以在手机浏览器中打开，然后选择“添加到主屏幕”以创建应用的快捷方式。下面视频教你！</p>
+					<div class="video-container">
+						<iframe src="https://www.youtube.com/embed/dTFaSVUlmA4?si=haZAEGNuYLF5ZXxc" frameborder="0" style="width: 100%; min-height: 400px;" allowfullscreen></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script>
+		var scenarios = [];
+		var beliefs = {};
+
+		function showIntroduction() {
+			document.getElementById('welcome-page').style.display = 'none';
+			document.getElementById('introduction-page').style.display = 'block';
+		}
+
+		function startInput() {
+			document.getElementById('introduction-page').style.display = 'none';
+			document.getElementById('input-page').style.display = 'block';
+		}
+
+		function addScenarioInput() {
+			var scenarioInputs = document.getElementById('scenario-inputs');
+			var input = document.createElement('input');
+			input.type = 'text';
+			input.classList.add('scenario-input');
+			input.placeholder = '情境' + (scenarioInputs.childElementCount + 1);
+			scenarioInputs.appendChild(input);
+		}
+
+		function showBeliefInput() {
+			var scenarioInputs = document.getElementsByClassName('scenario-input');
+			scenarios = [];
+
+			var nonEmptyInputs = 0;
+
+			for (var i = 0; i < scenarioInputs.length; i++) {
+				var inputValue = scenarioInputs[i].value.trim();
+				if (inputValue !== "") {
+					scenarios.push(inputValue);
+					nonEmptyInputs++;
+				}
+			}
+
+			if (nonEmptyInputs === 0) {
+				alert("请至少添加一个情境。");
+				return;
+			}
+			document.getElementById('input-page').style.display = 'none';
+			document.getElementById('belief-input-page').style.display = 'block';
+
+			var scenarioList = document.getElementById('scenario-list');
+			scenarioList.innerHTML = ''; // Clear previous options
+			scenarios.forEach(function(scenario) {
+				var option = document.createElement('div');
+				option.classList.add('scenario-option');
+				var radio = document.createElement('input');
+				radio.type = 'radio';
+				radio.name = 'scenario';
+				radio.value = scenario;
+				radio.onclick = function() { showBeliefForm(scenario); };
+				option.appendChild(radio);
+				var label = document.createElement('label');
+				label.innerText = scenario;
+				option.appendChild(label);
+				scenarioList.appendChild(option);
+			});
+		}
+
+		// JavaScript code with adjusted functionality
+
+		function showBeliefForm(scenario) {
+			document.getElementById('selected-scenario').innerText = '选择的情境：' + scenario;
+			var beliefInput = document.getElementById("belief-input");
+			var consequenceInput = document.getElementById("consequence-input");
+			var desireConsequence = document.getElementById("desire-consequence");
+			var actionInput = document.getElementById("action-input");
+			var evaluateButton = document.querySelector('#belief-input-page button');
+
+			// Check if the scenario exists in the JSON
+			if (beliefs[scenario]) {
+				beliefInput.value = beliefs[scenario].belief;
+				consequenceInput.value = beliefs[scenario].consequence;
+
+				// Check if desireConsequence exists
+				if (beliefs[scenario].desireConsequence) {
+					desireConsequence.value = beliefs[scenario].desireConsequence;
+					desireConsequence.style.display = 'inline-block';
+				} else {
+					desireConsequence.value = ''; // Display placeholder for desireConsequence
+					desireConsequence.style.display = 'none';
+				}
+
+				// Check if action exists
+				if (beliefs[scenario].action) {
+					actionInput.value = beliefs[scenario].action;
+					actionInput.style.display = 'inline-block';
+					
+				} else {
+					actionInput.value = ''; // Display placeholder for action
+					actionInput.style.display = 'none';
+					evaluateButton.innerText = '评估信念';
+					evaluateButton.onclick = function() { evaluateBelief(); };
+				}
+			} else {
+				// Scenario not found in JSON, display placeholders
+				beliefInput.value = '';
+				consequenceInput.value = '';
+				desireConsequence.value = ''; // Display placeholder for desireConsequence
+				desireConsequence.style.display = 'none';
+				actionInput.value = ''; // Display placeholder for action
+				actionInput.style.display = 'none';
+				evaluateButton.innerText = '评估信念';
+				evaluateButton.onclick = function() { evaluateBelief(); };
+			}
+			
+			
+
+			document.getElementById('belief-input-page').style.display = 'block';
+		}
+
+		function evaluateBelief() {
+			var selectedScenario = document.querySelector('input[name="scenario"]:checked');
+			if (!selectedScenario) return; // No scenario selected, do nothing
+			var scenario = selectedScenario.value;
+			var beliefInput = document.getElementById("belief-input").value;
+			var consequenceInput = document.getElementById("consequence-input").value;
+			if (beliefInput.trim() === "" || consequenceInput.trim() === "") {
+				alert("请填写所有字段。");
+				return;
+			}
+			beliefs[scenario] = { belief: beliefInput, consequence: consequenceInput };
+			console.log(beliefs); // Save this input to JSON or perform further processing
+			alert("很好，那你应该如何改变信念，才能带来不一样的结果呢？");
+
+			var desireConsequence = document.getElementById("desire-consequence");
+			var actionInput = document.getElementById("action-input");
+			desireConsequence.style.display = 'inline-block';
+			actionInput.style.display = 'inline-block';
+			var evaluateButton = document.querySelector('#belief-input-page button');
+			evaluateButton.innerText = '保存';
+			evaluateButton.onclick = function() { saveBelief(); };
+		}
+
+		function showScenarioInput() {
+			document.getElementById('belief-input-page').style.display = 'none';
+			document.getElementById('input-page').style.display = 'block';
+
+			// Reset button text to "评估信念" when returning to add another scenario
+			var evaluateButton = document.querySelector('#belief-input-page button');
+			evaluateButton.innerText = '评估信念';
+			evaluateButton.onclick = function() { evaluateBelief(); };
+
+			// Hide desire consequence and action input when returning to add another scenario
+			var desireConsequence = document.getElementById("desire-consequence");
+			var actionInput = document.getElementById("action-input");
+			desireConsequence.style.display = 'none';
+			actionInput.style.display = 'none';
+		}
+		function saveBelief() {
+			var selectedScenario = document.querySelector('input[name="scenario"]:checked');
+			if (!selectedScenario) return; // No scenario selected, do nothing
+			var scenario = selectedScenario.value;
+			var beliefInput = document.getElementById("belief-input").value;
+			var consequenceInput = document.getElementById("consequence-input").value;
+			var desireConsequence = document.getElementById("desire-consequence").value;
+			var actionInput = document.getElementById("action-input").value;
+			if (beliefInput.trim() === "" || consequenceInput.trim() === "" || desireConsequence.trim() === "" || actionInput.trim() === "") {
+				alert("请填写所有字段。");
+				return;
+			}
+			beliefs[scenario] = { belief: beliefInput, consequence: consequenceInput, desireConsequence: desireConsequence, action: actionInput };
+			console.log(beliefs); // Save this input to JSON or perform further processing
+			alert("情境已保存，下一步请添加下一个情境。");
+		}
+
+		function showSubscribe() {
+			document.getElementById("belief-input-page").style.display="none";
+			document.getElementById("subscribe-page").style.display="block";
+		}
+	</script>
+
+</body>
+</html>
