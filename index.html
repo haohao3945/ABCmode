@@ -352,6 +352,33 @@
 			document.getElementById("belief-input-page").style.display="none";
 			document.getElementById("subscribe-page").style.display="block";
 		}
+		// track view 
+			window.onload = function() {
+			console.log("hi")
+		 // Fetch the URL
+		    fetch('https://script.google.com/macros/s/AKfycbxMdAmgo9_wsiUIU23pRZpeYuHqd50RdKukED3w1Q_fRmyuGrqQBEcavc-WxI-7PQQg8A/exec?view=12')
+		        .then(response => response.json()
+				
+				)
+		        .then(data => {
+		            // Handle the data as needed
+		            console.log(data);
+		        })
+		        .catch(error => {
+		            // Handle errors
+		            console.error('Error fetching data:', error);
+		        });
+		  setTimeout(function () {
+		    fetch('https://script.google.com/macros/s/AKfycbxMdAmgo9_wsiUIU23pRZpeYuHqd50RdKukED3w1Q_fRmyuGrqQBEcavc-WxI-7PQQg8A/exec?home=12')
+		      .then(response => response.json())
+		      .then(data => {
+		        console.log(data);
+		      })
+		      .catch(error => {
+		        console.error('Error fetching data:', error);
+		      });
+		
+		      }, 60000);
 	</script>
 
 </body>
